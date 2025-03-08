@@ -25,7 +25,7 @@ ballgravity = 0
 toggleinfopress = 1
 score = 0
 hearts = 3
-endlessballspeed = 0.4
+endlessballspeed = 0.6
 
 #asset loading/defining
 menubg = pygame.image.load("img/menubg.jpg")
