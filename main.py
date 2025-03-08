@@ -25,6 +25,7 @@ ballgravity = 0
 toggleinfopress = 1
 score = 0
 hearts = 3
+endlessballspeed = 0.4
 
 #asset loading/defining
 menubg = pygame.image.load("img/menubg.jpg")
@@ -43,6 +44,9 @@ heart_rect = heart.get_rect(topleft=(-10,500))
 
 endscreen = pygame.image.load("img/endscreen.png")
 endscreen_rect = endscreen.get_rect(topleft=(0,0))
+
+restartbutton = pygame.image.load("img/restart.png")
+restartbutton_rect = restartbutton.get_rect(topleft=(300,400))
 
 
 #my functions
@@ -93,6 +97,11 @@ while running:
                 showplay = False
                 showcatcher = True
                 showballs = True
+            if restartbutton_rect.collidepoint(mousepos):
+                showplay = True
+                hearts = 3
+                heartpos = [-10,70,150]
+                score = 0
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_TAB:
                 toggleinfopress += 1
@@ -129,7 +138,7 @@ while running:
             ballreset()
             score += 1
         ball_rect.x = ballspos[randomint]
-        ballgravity += 0.4
+        ballgravity += endlessballspeed
         ball_rect.y += ballgravity
         screen.blit(ball,ball_rect)
     if toggleinfopress == 1 and showcatcher == True:
@@ -142,5 +151,6 @@ while running:
             screen.blit(heart,heart_rect)
     if hearts == 0:
         screen.blit(endscreen,endscreen_rect)
+        screen.blit(restartbutton,restartbutton_rect)
     pygame.display.flip()
     clock.tick(60)
